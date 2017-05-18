@@ -29,20 +29,13 @@ import io.fabric.sdk.android.Fabric;
 public class MainActivity extends Activity {
     private static final Marquee mMarquee = new Marquee();
     private static final String TAG = "MainActivity";
-    private static final Handler repeatHandler = new Handler();
     private List<Tweet> searchResultList;
     private int mCurrentTweet;
-    private final Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            refreshTimeline();
-        }
-    };
     private ButtonInputDriver[] mInputDriver = new ButtonInputDriver[3];
 
     private void refreshTimeline() {
         SearchTimeline searchTimeline = new SearchTimeline.Builder()
-                .query("#io17")
+                .query("#GDGDublin OR @GDGDublin")
                 .build();
         searchTimeline.next(0L, new Callback<TimelineResult<Tweet>>() {
             @Override

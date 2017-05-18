@@ -13,11 +13,10 @@ import java.util.TimerTask;
  */
 
 class Marquee {
+    public static final String PADDING = "    ";
     private static final long MARQUEE_INTERVAL = 200;
     private static final int LCD_LENGTH = 4;
-    public static final String PADDING = "    ";
-
-    private Timer mTimer;
+    private static Timer mTimer;
     private int mCurrentMarqueePos;
     private String mMarqueeText;
 
@@ -33,16 +32,20 @@ class Marquee {
     }
 
     public void displayText(String text) {
-        mMarqueeText = PADDING+text+ PADDING;
+        mMarqueeText = PADDING + text + PADDING;
         mCurrentMarqueePos = 0;
-        stop();
-        mTimer = new Timer();
-        mTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                updateMarquee();
-            }
-        }, MARQUEE_INTERVAL, MARQUEE_INTERVAL);
+        //stop();
+        if (mTimer == null) {
+
+            mTimer = new Timer();
+            mTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+
+                    updateMarquee();
+                }
+            }, MARQUEE_INTERVAL, MARQUEE_INTERVAL);
+        }
     }
 
     private void updateMarquee() {
@@ -67,9 +70,9 @@ class Marquee {
 
     public String splitString(String string, int startPos) {
         int currentPos = startPos;
-        for (int numProperCharacters=0; numProperCharacters < LCD_LENGTH; numProperCharacters++) {
+        for (int numProperCharacters = 0; numProperCharacters < LCD_LENGTH; numProperCharacters++) {
             // A dot after the current character is considered part of the character
-            if (string.length() > currentPos+1 && string.charAt(currentPos+1) == '.') {
+            if (string.length() > currentPos + 1 && string.charAt(currentPos + 1) == '.') {
                 currentPos++;
             }
             currentPos++;
