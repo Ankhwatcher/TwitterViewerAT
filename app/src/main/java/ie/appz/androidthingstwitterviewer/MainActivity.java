@@ -21,6 +21,7 @@ import com.twitter.sdk.android.tweetui.SearchTimeline;
 import com.twitter.sdk.android.tweetui.TimelineResult;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
@@ -40,7 +41,7 @@ public class MainActivity extends Activity {
             @Override
             public void success(Result<TimelineResult<Tweet>> result) {
                 Log.d(TAG, "success: " + result.data.items.size());
-                searchResultList = result.data.items;
+                searchResultList = new ArrayList<>(result.data.items);
 
                 showTweet(0);
 
