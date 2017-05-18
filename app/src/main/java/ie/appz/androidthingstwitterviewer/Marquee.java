@@ -47,7 +47,7 @@ class Marquee {
 
     private void updateMarquee() {
         // In this display, the character '.' does not count as such (unless consecutive)
-        // The length of the string to dispay depends on the number of dots there
+        // The length of the string to display depends on the number of dots there
         if (mMarqueeText.charAt(mCurrentMarqueePos) == '.') {
             mCurrentMarqueePos++;
         }
